@@ -1,0 +1,34 @@
+287.FindDuplicate
+
+int FindDuplicate(std::vector<int>& nums)
+{
+    int left = 1;
+    int right = nums.size() - 1;
+    int middle = 0;
+    int cnt = 0;
+
+    while (left < right)
+    {
+        cnt = 0;
+        middle = left + (right - left) / 2;
+
+        for (auto begin = nums.begin(); begin < nums.end(); ++begin)
+        {
+            if (*begin <= middle)
+            {
+                cnt++;
+            }
+        }
+
+        if (cnt > middle)
+        {
+            right = middle;
+        }
+        else
+        {
+            left = middle + 1;
+        }
+    }
+
+    return left;
+}
